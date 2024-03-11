@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fileExtension = /\.(txt)$/i;
     const type = 'v';
     const date = '(19\\d{2}|20[0-1]\\d|202[0-4])-(0?[1-9]|1[0-2])-([12]\\d|3[01]|0?[1-9])';
-    const vehicleplates = '([a-zA-Z]{2,3})-?((\\d{2,3})|(\\d{2}[a-zA-Z]{1}))';
+    const vehicleplates = '(([a-zA-Z]{2,3})[-\\s]?((\\d{3})|(\\d{2}[a-zA-Z]{1})),?)+';
     const fatalities = '\\d{1,2}';
     const format = new RegExp('^' + type + ';' + date + ';' + vehicleplates + ';' + fatalities + '$');
 
@@ -28,8 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const namefile = INPUT.value
         if (!fileExtension.test(namefile)) {
-            showAlert("Por favor, selecciona un archivo con extensión .txt")
+            showAlert("Por favor, selecciona un archivo con extensión .txt");
             INPUT.value = '';
+            PREELEMENT.innerHTML = '';
             return;
         }
 
