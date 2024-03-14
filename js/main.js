@@ -7,18 +7,31 @@
 
 const TITLE = "IMPORTANTE"
 const TEMPLATE = 
-`<strong>Indicaciones.<br/></strong>
-<p>Se debe cargar el archivo en formato .txt.</p><br/>
-<p><strong>Ubicacion:</strong> ./{raiz-proyecto}/data/data.txt</p><br/>
-<p>El aplicativo es capaz de leer linea por linea y sacar la estadisticas.`
+`
+<section class="section-instrucciones">
+<h4>Introducción.</h4><br/>
+<p>RE-APP es una aplicación web que te permite explorar y analizar datos de accidentes contenidos en archivos de texto. Con una interfaz intuitiva y accesible, RE-APP te ayuda a comprender mejor la información sobre accidentes de tráfico y ofrece estadísticas clave para un análisis detallado.</p><br/>
+<strong>Indicaciones.<br/></strong>
+<p>Se debe cargar un archivo .txt que contenga la información a analizar en la siguiente ruta.</p><br/>
+<ul class="ol-rules">
+    <li><strong>Ubicacion:</strong> ./{raiz-proyecto}/data/data.txt</li>
+</ul>
+<p>Posterior a esto, presionar en el botón "Procesar Archivo". Esto generará una estadística con la siguiente información: </p>
+<ol class="ol-rules">
+    <li>Cantidad de accidentes vehiculares</li>
+    <li>Cantidad de accidentes con víctimas fatales</li>
+    <li>Cantidad de fatalidades en general</li>
+    <li>Promedio de fatalidades</li>
+</ol>
+</section>
+`
 
 document.addEventListener("DOMContentLoaded", () => {
     // EXPRESIONES
     const fileExtension = /\.(txt)$/i; // Determina el tipo de archivo a procesar
     const lastinput = /;(\d+)$/; // Del formato de entrada, obtiene las fatalidades
-
     const type = 'v';
-    const date = '(19\\d{2}|20[0-1]\\d|202[0-4])-(0?[1-9]|1[0-2])-([12]\\d|3[01]|0?[1-9])';
+    const date = '(19\\d{2}|20[0-1]\\d|202[0-4])-(((0(1|3|5|8)|1(0|2))-(0[1-9]|[12]\\d|3[0-1]))|(0(4|6|9)|11)-(0[1-9]|[12]\\d|30)|(02)-([12]\\d|0[1-9]))';
     const vehicleplates = '((([a-zA-Z]{3})[-\\s]?((\\d{3})|(\\d{2}[a-zA-Z]{1}))|((a{2}|d{2}|c{2}|m{2}|o{2})[-\\s]?\\d{4})|((s|r){1}[-\\s]?\\d{5})),?)+';
     const fatalities = '\\d{1,2}';
     const format = new RegExp('^' + type + ';' + date + ';' + vehicleplates + ';' + fatalities + '$', 'i');
@@ -90,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }            
         }
 
-        const average = (fatalitiesCount / vehiclesAccidentsCount)
+        const average = (fatalitiesCount / vehiclesAccidentsFatalitiesCount).toFixed(2)
 
         const TEMPLATE = 
         `
