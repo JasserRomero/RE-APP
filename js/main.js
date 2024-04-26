@@ -1,6 +1,7 @@
 /*
     Autor: Jasser Romero
     Tipo de formato = tipo;fecha;identificador;fatalidades
+    Cambio
 */
 
 const TITLE = "IMPORTANTE"
