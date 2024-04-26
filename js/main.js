@@ -1,7 +1,5 @@
 /*
     Autor: Jasser Romero
-    Cc: 100199640
-
     Tipo de formato = tipo;fecha;identificador;fatalidades
 */
 
